@@ -16,7 +16,7 @@ function checkGuess() {
     guesses.textContent = 'Previous guesses: ';
   }
   guesses.textContent += userGuess + ' ';
- 
+
   if (userGuess === randomNumber) {
     lastResult.textContent = 'Congratulations! You got it right!';
     lastResult.style.backgroundColor = 'green';
@@ -28,13 +28,13 @@ function checkGuess() {
   } else {
     lastResult.textContent = 'Wrong!';
     lastResult.style.backgroundColor = 'red';
-    if(userGuess < randomNumber) {
+    if (userGuess < randomNumber) {
       lowOrHi.textContent = 'Last guess was too low!';
-    } else if(userGuess > randomNumber) {
+    } else if (userGuess > randomNumber) {
       lowOrHi.textContent = 'Last guess was too high!';
     }
   }
- 
+
   guessCount++;
   guessField.value = '';
   guessField.focus();
@@ -42,10 +42,25 @@ function checkGuess() {
 
 guessSubmit.addEventListener('click', checkGuess);
 
-function setGameOver(){
+function setGameOver() {
   guessField.disabled = true;
   guessSubmit.disabled = true;
   resetButton = document.createElement('button');
-  resetButton.textContent='Start new game';
+  resetButton.textContent = 'Start new game';
   document.body.appendChild(resetButton);
+  resetButton.addEventListener('click', resetGame);
+}
+
+function resetGame() {
+  guessCount = 1;
+  guessField.textContent = '';
+  guessField.disabled = false;
+  guessSubmit.disabled = false;
+  var randomNumber = Math.floor(Math.random() * 100) + 1;
+  document.body.removeChild(resetButton);
+  var resetResults = document.querySelectorAll('.resultSection p');
+  for (var ptag = 0; ptag < resetResults.length; ptag++) {
+    resetResults[ptag].textContent = '';
+  }
+
 }
