@@ -23,7 +23,7 @@ function checkGuess() {
     lowOrHi.textContent = '';
     setGameOver();
   } else if (guessCount === 10) {
-    lastResult.textContent = '!!!GAME OVER!!!';
+    lastResult.textContent = 'You have exhausted all your 10 chances';
     setGameOver();
   } else {
     lastResult.textContent = 'Wrong!';
@@ -41,3 +41,11 @@ function checkGuess() {
 }
 
 guessSubmit.addEventListener('click', checkGuess);
+
+function setGameOver(){
+  guessField.disabled = true;
+  guessSubmit.disabled = true;
+  resetButton = document.createElement('button');
+  resetButton.textContent='Start new game';
+  document.body.appendChild(resetButton);
+}
