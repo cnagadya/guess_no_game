@@ -27,7 +27,8 @@ function showStory() {
   randomDestination = randomizer(destinations);
   newStory = newStory.replace(':randomDestination:', randomDestination);
   if (document.getElementById("uk").checked) {
-    //do weight conversion
+    var temperature =  Math.round((94-32) * 5 / 9) + ' centigrade';
+    newStory = newStory.replace('94 farenheit',temperature);
   }
   story.style.visibility = 'visible';
   story.textContent = newStory;
